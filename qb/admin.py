@@ -1,12 +1,23 @@
 from django.contrib import admin
-from .models import Question, Choice
+from .models import Question, Choice, Language
 
 # Register your models here.
-#admin.site.register(Question)
-admin.site.register(Choice)
- 
+
+class ChoiceInLine(admin.TabularInline):
+    model = Choice
+    extra = 2
+    max_num = 4
+
 @admin.register(Question)
-class VenueAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'lang')
-    #ordering = ('name',)
-    # search_fields = ('name', 'address')
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [ChoiceInLine]
+    list_display = ('question_text', )
+    fields = ('lang', 'question_text', 'pub_date')
+    list_filter = ('lang', )
+    search_fields = ('question_text', 'lang')
+
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('lang_name', 'lang_code')
+    
+admin.site.register(Language, LanguageAdmin)
+
