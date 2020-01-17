@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'en-us' # default language
 LANGUAGES = (
-    ('en', 'English'),
+    ('en-us', 'English'),
     ('hi', 'Hindi'),
     ('mr', 'Marathi'),
     ('kn', 'Kannada'),
