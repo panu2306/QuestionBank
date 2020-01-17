@@ -12,8 +12,9 @@ class ChoiceInLine(admin.TabularInline):
 
 class QuestionAdmin(LocalizedFieldsAdminMixin, admin.ModelAdmin):
     inlines = [ChoiceInLine]
-    list_display = ('question_text', )
+    list_display = ('question_text', 'pub_date')
     fields = ('question_text', 'pub_date')
     search_fields = ('question_text',)
+    
 
 admin.site.register(Question, QuestionAdmin)
