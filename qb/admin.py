@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Question, Choice, Language
+from .models import Question, Choice
+
+from localized_fields.admin import LocalizedFieldsAdminMixin
 
 # Register your models here.
 
@@ -8,16 +10,10 @@ class ChoiceInLine(admin.TabularInline):
     extra = 2
     max_num = 4
 
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+class QuestionAdmin(LocalizedFieldsAdminMixin, admin.ModelAdmin):
     inlines = [ChoiceInLine]
     list_display = ('question_text', )
-    fields = ('lang', 'question_text', 'pub_date')
-    list_filter = ('lang', )
-    search_fields = ('question_text', 'lang')
+    fields = ('question_text', 'pub_date')
+    search_fields = ('question_text',)
 
-class LanguageAdmin(admin.ModelAdmin):
-    list_display = ('lang_name', 'lang_code')
-    
-admin.site.register(Language, LanguageAdmin)
-
+admin.site.register(Question, QuestionAdmin)
