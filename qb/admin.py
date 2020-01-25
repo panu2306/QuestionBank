@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Choice, Language
+from .models import Question, Choice, Language, QuestionsInMultipleLanguage
 
 # Register your models here.
 
@@ -15,9 +15,20 @@ class QuestionAdmin(admin.ModelAdmin):
     fields = ('lang', 'question_text', 'pub_date')
     list_filter = ('lang', )
     search_fields = ('question_text', 'lang')
-
+    filter_vertical = ('lang', )
+    date_hierarchy = 'pub_date'
+    """
+    fieldsets = ((None, {
+                    'fields': ('lang', )
+                }),
+                 ('Advanced Option', {
+                    'classes': ('collapse',),
+                    'fields': ('question_text', 'pub_date',),
+                }),
+            )
+    """
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('lang_name', 'lang_code')
-    
-admin.site.register(Language, LanguageAdmin)
 
+admin.site.register(Language, LanguageAdmin)
+admin.site.register(QuestionsInMultipleLanguage)

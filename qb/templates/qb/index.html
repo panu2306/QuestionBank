@@ -1,0 +1,15 @@
+<h1>Hi, Welcome</h1>
+
+<FORM method="POST">
+{% csrf_token %}
+{% for question in questions %}
+    <p> {{ question.question_text }} </p>
+    {% for choice in question.choice_set.all %}
+        <INPUT TYPE="RADIO" VALUE={{ choice }} NAME={{ question.question_text }}>
+        {{ choice }}<BR>
+    {% endfor %}
+    <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+
+{% endfor %}
+
+</FORM>
