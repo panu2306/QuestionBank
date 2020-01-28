@@ -21,3 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls'))
 ]
+
+
+admin.site.site_header = 'Question Bank'
+admin.site.site_title = 'Question Bank'
+admin.site.index_title = 'Application Models'
