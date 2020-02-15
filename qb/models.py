@@ -17,6 +17,9 @@ class Question(models.Model):
     lang = models.ForeignKey(Language, on_delete=models.PROTECT)
     pub_date = models.DateTimeField('date_published')
 
+    class Meta:
+        unique_together = ('question_id', 'lang',)
+
     def __str__(self):
         return self.question_name
 
