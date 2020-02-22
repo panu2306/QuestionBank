@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django import forms
 from django.utils import timezone
 
-from .models import Question, Choice, Language
+from .models import Question, Choice, Language, Subject, Standard
 
 # Register your models here.
 
@@ -15,12 +15,11 @@ class QuestionAdminForm(forms.ModelForm):
         widgets = {
             'question_name': forms.Textarea(attrs={'cols': 50, 'rows': 10}),
         }
-        localized_fields = ('question_name',)
+        #localized_fields = ('question_name',)
     
     def clean(self):
         cleaned_data = super().clean()
         pub_date = cleaned_data.get('pub_date')
-        print(pub_date)
         now = timezone.now()
         if(pub_date > now):
             raise forms.ValidationError("You are entering the future date.")
@@ -53,3 +52,5 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display = ('lang_name', 'lang_code')
 
 admin.site.register(Language, LanguageAdmin)
+admin.site.register(Subject)
+admin.site.register(Standard)
