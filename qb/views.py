@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Question, Choice
+from .models import Question, Choice, Standard, Subject
 from .forms import NameForm
 
 # Create your views here.
@@ -15,13 +15,9 @@ from .forms import NameForm
 #     return render(request, 'qb/index.html', context=context)
 
 def index(request):
-    if request.method == 'POST':
-        form = NameForm(request.POST)
-        if form.is_valid():
-            return render(request, 'qb/form_page.html', context=None)
-    else:
-        form = NameForm()
-    return render(request, 'qb/index.html', context={'form': form})
+    standard_list = Standard.objects.all()
+    print(standard_list)
+    return render(request, 'qb/index.html', context= {'standard_list': standard_list})
 
 def acknowledge(request):
     return HttpResponse("Form Submitted Successfully!!!")
