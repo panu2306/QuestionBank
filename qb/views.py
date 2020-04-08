@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question, Choice, Standard, Subject
-from .forms import NameForm
 
 # Create your views here.
 # def index(request):
