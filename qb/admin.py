@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django import forms
 from django.utils import timezone
 
-from .models import Question, Choice, Language, Subject, Standard
+from .models import Question, Choice, Language, Subject, Standard, UserProfileInfo
 
 # Register your models here.
 
@@ -54,3 +54,4 @@ class LanguageAdmin(admin.ModelAdmin):
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Subject)
 admin.site.register(Standard)
+admin.site.register(UserProfileInfo)
