@@ -6,7 +6,18 @@
         {% bootstrap_javascript jquery='full' %}
     </head>
     <body>
-        {% block  bodyblock %}
-        {% endblock %}
+        <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="{% url 'index' %}">Question Bank</a></li>
+                <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
+                <li><a class="navbar-link" href="{% url 'register' %}">Register</a></li>
+            </ul>
+        </div>
+        </nav>
+        <div class="container">
+            {% block  body_block %}
+            {% endblock %}
+        </div>
     </body>
 </html>
