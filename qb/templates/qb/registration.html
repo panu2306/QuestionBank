@@ -7,12 +7,36 @@
             <h1>Thank You for Registering.</h1>
         {% else %}
             <h1>Register Here</h1>
-            <h3>Fill Out the Form:</h3>
+            <h3>Fill Out the Form</h3>
 
             <form enctype="multipart/form-data" method="post">
                 {% csrf_token %}
-                {{ user_form.as_p }}    
-                {{ profile_form.as_p }}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ user_form.username.errors }}
+                    <label for="{{ user_form.username.id_for_label }}">Username:</label>
+                    {{ user_form.username }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ user_form.email.errors }}
+                    <label for="{{ user_form.email.id_for_label }}">Email Address:</label>
+                    {{ user_form.email }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ user_form.password.errors }}
+                    <label for="{{ user_form.password.id_for_label }}">Password:</label>
+                    {{ user_form.password }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ profile_form.portfolio_site.errors }}
+                    <label for="{{ profile_form.portfolio_site.id_for_label }}">Portfolio Site:</label>
+                    {{ profile_form.portfolio_site }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ profile_form.profile_pic.errors }}
+                    <label for="{{ profile_form_form.profile_pic.id_for_label }}">Profile Picture:</label>
+                    {{ profile_form.profile_pic }}
+                </div>
                 <input type="submit" value="Register">
             </form>
         {% endif %}

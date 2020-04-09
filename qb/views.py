@@ -4,15 +4,6 @@ from .models import Question, Choice, Standard, Subject
 from .forms import UserForm, UserProfileInfoForm
 
 # Create your views here.
-# def index(request):
-#     questions = Question.objects.all()
-#     choices = Choice.objects.all()
-
-#     context = {
-#         'questions':questions,
-#         'choices':choices,
-#     }
-#     return render(request, 'qb/index.html', context=context)
 
 def index(request):
     return render(request, 'qb/index.html', context= None)
