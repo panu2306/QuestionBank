@@ -1,8 +1,13 @@
 {% extends 'qb/base.html' %}
 
 {% block  body_block %}
-    {{ block.super }}
     <div class="jumbotron">
         <h1>Question Bank Index Page</h1>
     </div>
+    <select id="standard" class="form-control standard">
+        <option>Select Standard</option>
+        {% for standard in standard_list %}
+            <option value="{{ standard }}">{{standard}}</option>
+        {% endfor %}
+    </select>
 {% endblock %}

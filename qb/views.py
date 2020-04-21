@@ -6,7 +6,10 @@ from .forms import UserForm, UserProfileInfoForm
 # Create your views here.
 
 def index(request):
-    return render(request, 'qb/index.html', context= None)
+    context = {}
+    standard_list = Standard.objects.all()
+    context['standard_list'] = standard_list
+    return render(request, 'qb/index.html', context=context)
 
 def register(request):
 
