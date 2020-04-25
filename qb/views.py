@@ -46,6 +46,13 @@ class QuestionListView(generic.ListView):
     model = Question
     context_object_name = 'question_list'
 
+def question_detail(request, id):
+    context = {}
+    question_text = Question.objects.get(question_id=id)
+    choices = Choice.objects.filter(question__question_name=question_text)
+    context['question_text'] = question_text
+    context['choices'] = choices
+    return render(request, 'qb/question_details.html', context=context)
 
 class AboutView(generic.TemplateView):
     template_name = 'qb/about.html'

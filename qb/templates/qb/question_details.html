@@ -1,0 +1,16 @@
+{% extends 'qb/base.html' %}
+
+{% block  body_block %}
+    <h1>Question Details</h1>
+    <div class="jumbotron">
+        <h3>{{ question_text }}</h3>
+        {% for choice in choices %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{ question_text }}" id="{{ choice }}" value="{{ choice }}">
+                <label class="form-check-label" for="{{ question_text }}">
+                    {{ choice }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

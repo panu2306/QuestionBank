@@ -1,0 +1,12 @@
+{% extends 'qb/base.html' %}
+
+{% block  body_block %}
+    <div class="jumbotron">
+        <h1>Question List</h1>
+    </div>
+    <ol>
+        {% for question in question_list %}
+            <li><a href="{% url 'question_detail' question.question_id %}" class="badge badge-primary">{{ question.question_name }}</a></li>
+        {% endfor %}
+    </ol>
+{% endblock %}
