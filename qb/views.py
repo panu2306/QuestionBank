@@ -1,3 +1,4 @@
+from django.views import generic
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question, Choice, Standard, Subject
@@ -40,3 +41,27 @@ def register(request):
         profile_form = UserProfileInfoForm()
     
     return render(request, 'qb/registration.html', context={'profile_form': profile_form, 'user_form': user_form, 'registered': registered})
+
+class QuestionListView(generic.ListView):
+    model = Question
+    context_object_name = 'question_list'
+
+
+class AboutView(generic.TemplateView):
+    template_name = 'qb/about.html'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
