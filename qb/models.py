@@ -13,10 +13,23 @@ class UserProfileInfo(models.Model):
     def __str__(self):
         return self.user.username
 
+class Standard(models.Model):
+    standard = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.standard
+
+class Subject(models.Model):
+    sub_name = models.CharField(max_length=64)
+    standard = models.ManyToManyField(Standard)
+
+    def __str__(self):
+        return self.sub_name
+
 class Language(models.Model):
     lang_name = models.CharField(max_length=64)
     lang_code = models.CharField(max_length=2)
-
+    
     def __str__(self):
         return self.lang_name
     
@@ -48,17 +61,5 @@ class Choice(models.Model):
         if(self.lang != self.question.lang):
             print('Your choice', self.choice_text, 'is not valid.')
             raise ValidationError("Can't Save") 
-        super(Choice, self).save(*args, **kwargs)
-
-class Subject(models.Model):
-    sub_name = models.CharField(max_length=64)
- 
-    def __str__(self):
-        return self.sub_name
-    
-class Standard(models.Model):
-    standard = models.CharField(max_length=64)
-
-    def __str__(self):
-        return self.standard
+        super(Choice, self).save(*args, **kwargs)    
     
